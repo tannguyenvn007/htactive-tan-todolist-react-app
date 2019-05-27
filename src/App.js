@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+import Login from "./views/Login";
+import Home from "./views/Home";
+import Header from "./components/Header";
+import ColorProvider from "./components/ColorProvider";
+import TodoProvider from "./components/TodoProvider";
+
+class App extends React.Component {
+  state = {
+    page: "",
+    isLoading: false,
+    color: [34, 34, 34]
+  };
+  onChangePage = page => this.setState({ page });
+
+  render() {
+    const { page } = this.state;
+    return (
+      <ColorProvider>
+        <div className="wrapper">
+          <Header
+            page={page}
+            onLogin={this.onChangePage}
+            onClick={this.handleClick}
+          />
+          {page === "home" ? (
+            <TodoProvider>
+              <Home />
+            </TodoProvider>
+          ) : (
+            <Login onLogin={this.onChangePage} page={page} />
+          )}
+        </div>
+      </ColorProvider>
+    );
+  }
 }
 
 export default App;
