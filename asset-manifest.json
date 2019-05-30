@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/htactive-tan-todolist-react-app/index/static/css/main.5c53926b.chunk.css",
-    "main.js": "/htactive-tan-todolist-react-app/index/static/js/main.cb0c1c59.chunk.js",
-    "main.js.map": "/htactive-tan-todolist-react-app/index/static/js/main.cb0c1c59.chunk.js.map",
-    "runtime~main.js": "/htactive-tan-todolist-react-app/index/static/js/runtime~main.171774dd.js",
-    "runtime~main.js.map": "/htactive-tan-todolist-react-app/index/static/js/runtime~main.171774dd.js.map",
-    "static/css/2.5d832d7a.chunk.css": "/htactive-tan-todolist-react-app/index/static/css/2.5d832d7a.chunk.css",
-    "static/js/2.cf5b9a26.chunk.js": "/htactive-tan-todolist-react-app/index/static/js/2.cf5b9a26.chunk.js",
-    "static/js/2.cf5b9a26.chunk.js.map": "/htactive-tan-todolist-react-app/index/static/js/2.cf5b9a26.chunk.js.map",
-    "index.html": "/htactive-tan-todolist-react-app/index/index.html",
-    "precache-manifest.0dea89a6655da36c97807696b2eb11ed.js": "/htactive-tan-todolist-react-app/index/precache-manifest.0dea89a6655da36c97807696b2eb11ed.js",
-    "service-worker.js": "/htactive-tan-todolist-react-app/index/service-worker.js",
-    "static/css/2.5d832d7a.chunk.css.map": "/htactive-tan-todolist-react-app/index/static/css/2.5d832d7a.chunk.css.map",
-    "static/css/main.5c53926b.chunk.css.map": "/htactive-tan-todolist-react-app/index/static/css/main.5c53926b.chunk.css.map"
+    "main.css": "/htactive-tan-todolist-react-app/static/css/main.5c53926b.chunk.css",
+    "main.js": "/htactive-tan-todolist-react-app/static/js/main.8d89a794.chunk.js",
+    "main.js.map": "/htactive-tan-todolist-react-app/static/js/main.8d89a794.chunk.js.map",
+    "runtime~main.js": "/htactive-tan-todolist-react-app/static/js/runtime~main.d903908d.js",
+    "runtime~main.js.map": "/htactive-tan-todolist-react-app/static/js/runtime~main.d903908d.js.map",
+    "static/css/2.5d832d7a.chunk.css": "/htactive-tan-todolist-react-app/static/css/2.5d832d7a.chunk.css",
+    "static/js/2.cf5b9a26.chunk.js": "/htactive-tan-todolist-react-app/static/js/2.cf5b9a26.chunk.js",
+    "static/js/2.cf5b9a26.chunk.js.map": "/htactive-tan-todolist-react-app/static/js/2.cf5b9a26.chunk.js.map",
+    "index.html": "/htactive-tan-todolist-react-app/index.html",
+    "precache-manifest.1b8d28156929b13e97a6c47121ffa689.js": "/htactive-tan-todolist-react-app/precache-manifest.1b8d28156929b13e97a6c47121ffa689.js",
+    "service-worker.js": "/htactive-tan-todolist-react-app/service-worker.js",
+    "static/css/2.5d832d7a.chunk.css.map": "/htactive-tan-todolist-react-app/static/css/2.5d832d7a.chunk.css.map",
+    "static/css/main.5c53926b.chunk.css.map": "/htactive-tan-todolist-react-app/static/css/main.5c53926b.chunk.css.map"
   }
 }
