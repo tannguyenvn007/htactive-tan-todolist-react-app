@@ -31,7 +31,7 @@ export default props => {
                   className="color-btn"
                   onClick={handleClick}
                 >
-                  <img src="../images/color1.png" height="23px" alt="" />
+                  <img src="./images/color1.png" height="23px" alt="" />
                 </button>
               </>
             )}
