@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/htactive-tan-todolist-react-app/precache-manifest.2f0ed27a70cd255d872c3b74e959f01d.js"
+  "/htactive-tan-todolist-react-app/precache-manifest.10dd0ddf06f7fecd69afa08afb243313.js"
 );
 
 self.addEventListener('message', (event) => {
