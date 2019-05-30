@@ -9,6 +9,7 @@ const TodoInput = props => {
   };
   const submit = event => {
     event.preventDefault();
+    setText("");
     props.addTodo(text);
   };
   useEffect(() => {
