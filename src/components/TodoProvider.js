@@ -1,82 +1,67 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import TodoContext from "../contexts/TodoContext";
 import axios from "axios";
 import * as API from "../constants/config";
 
-export default class extends Component {
-  state = {
-    todos: [],
-    filter: "all",
-    isLoading: false
-  };
-  async componentDidMount() {
-    this.setState({ isLoading: true });
-    const task = await axios.get(`${API.API_URL}tasks`);
-    this.setState({
-      todos: task.data.sort(this.compare),
-      isLoading: false
-    });
-  }
-  addTodo = async text => {
+export default props => {
+  const [todos, setTodo] = useState([]);
+  const [filter, setFilter] = useState("all");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchTask = async () => {
+      setIsLoading(true);
+      const task = await axios.get(`${API.API_URL}tasks`);
+      setTodo(task.data.sort(compare));
+      setIsLoading(false);
+    };
+    fetchTask();
+  }, []); // truyển mảng rỗng để useEffect chạy 1 lần (Didmount), nếu không truyền nó sẽ chạy liên tục vì lúc đó nó sẽ hiểu là (Didupdate)
+  const addTodo = async text => {
     const to = await axios.post(`${API.API_URL}tasks`, {
       done: true,
       text: text
     });
-    this.setState({
-      todos: [to.data, ...this.state.todos]
-    });
+    setTodo([to.data, ...todos]);
   };
 
-  removeTodo = async id => {
+  const removeTodo = async id => {
     if (window.confirm("Are you sure?")) {
       await axios.delete(`${API.API_URL}tasks/${id}`);
-      const todos = this.state.todos.filter(t => t.id !== id);
-      this.setState({
-        todos
-      });
+      const todo = todos.filter(t => t.id !== id);
+      setTodo(todo);
     }
   };
 
-  updateTodo = id => {
-    const todos = this.state.todos.map(t =>
-      t.id !== id ? t : { ...t, isEditing: true }
-    );
-    this.setState({
-      todos
-    });
+  const updateTodo = id => {
+    const todo = todos.map(t => (t.id !== id ? t : { ...t, isEditing: true }));
+    setTodo(todo);
   };
-  updateTodoList = async (text, id) => {
+  const updateTodoList = async (text, id) => {
     await axios.put(`${API.API_URL}tasks/${id}`, {
       text
     });
-    const todos = this.state.todos.map(t =>
+    const todo = todos.map(t =>
       t.id !== id ? t : { ...t, text, isEditing: false }
     );
-    this.setState({
-      todos
-    });
+    setTodo(todo);
   };
 
-  completeTodo = async (id, done) => {
+  const completeTodo = async (id, done) => {
     await axios.put(`${API.API_URL}tasks/${id}`, {
       done: !done
     });
-    const todos = this.state.todos.map(t =>
+    const todo = todos.map(t =>
       t.id !== id ? t : { ...t, isEditing: false, done: !t.done }
     );
-    this.setState({
-      todos
-    });
+    setTodo(todo);
   };
 
-  filterStatus = status => {
-    this.setState({
-      filter: status
-    });
+  const filterStatus = status => {
+    setFilter(status);
   };
 
-  filterTodo = () => {
-    const { todos, filter } = this.state;
+  const filterTodo = () => {
     switch (filter) {
       case "active":
         return todos.filter(t => t.done);
@@ -87,35 +72,29 @@ export default class extends Component {
     }
   };
 
-  onCloseInput = id => {
-    const todos = this.state.todos.map(t =>
-      t.id !== id ? t : { ...t, isEditing: false }
-    );
-    this.setState({
-      todos
-    });
+  const onCloseInput = id => {
+    const todo = todos.map(t => (t.id !== id ? t : { ...t, isEditing: false }));
+    setTodo(todo);
   };
-  compare = (a, b) => {
+  const compare = (a, b) => {
     return b.id - a.id;
   };
-  render() {
-    return (
-      <TodoContext.Provider
-        value={{
-          isLoading: this.state.isLoading,
-          addTodo: this.addTodo,
-          todos: this.filterTodo(),
-          filterStatus: this.filterStatus,
-          active: this.state.filter,
-          removeTodo: this.removeTodo,
-          updateTodo: this.updateTodo,
-          updateTodoList: this.updateTodoList,
-          onCloseInput: this.onCloseInput,
-          completeTodo: this.completeTodo
-        }}
-      >
-        {this.props.children}
-      </TodoContext.Provider>
-    );
-  }
-}
+  return (
+    <TodoContext.Provider
+      value={{
+        isLoading: isLoading,
+        addTodo: addTodo,
+        todos: filterTodo(),
+        filterStatus: filterStatus,
+        active: filter,
+        removeTodo: removeTodo,
+        updateTodo: updateTodo,
+        updateTodoList: updateTodoList,
+        onCloseInput: onCloseInput,
+        completeTodo: completeTodo
+      }}
+    >
+      {props.children}
+    </TodoContext.Provider>
+  );
+};

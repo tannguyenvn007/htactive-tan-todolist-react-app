@@ -1,11 +1,10 @@
-import React,{useContext} from "react";
+import React from "react";
 import TodoItem from "./TodoItem";
 import PropTypes from 'prop-types';
-import TodoContext from "../contexts/TodoContext";
+import withTodo from "../hocs/withTodo";
 
-export const TodoContent = (props) =>{
-  const {todos, filterStatus,active,updateTodoList} = useContext(TodoContext);
-  console.log("sad",todos)
+ const TodoContent = (props) =>{
+  const {todos, filterStatus,active,updateTodoList} = props;
   return (
     <>
       <ul className="tasks">
@@ -25,6 +24,8 @@ export const TodoContent = (props) =>{
     </>
   );
 }
+export default withTodo(TodoContent);
+
 TodoContent.propTypes = {
   filterStatus: PropTypes.func,
 }

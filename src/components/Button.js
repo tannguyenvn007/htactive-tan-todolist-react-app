@@ -3,7 +3,7 @@ import ColorContext from "../contexts/ColorContext";
 
 export default props => {
   var { text, onLogin } = props;
-  const {color} = useContext(ColorContext);
+  const {color, button} = useContext(ColorContext);
   return (
     <button
       onClick={() => onLogin("home")}

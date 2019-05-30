@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import TodoInput from "../components/TodoInput";
-import { TodoContent } from "../components/TodoContent";
+import TodoContent from "../components/TodoContent";
 import Loader from "react-loader-spinner";
-import TodoContext from "../contexts/TodoContext";
+import withTodo from "../hocs/withTodo";
 
-export default () => {
-  const { isLoading, addTodo } = useContext(TodoContext);
+const Home = props => {
   return (
     <>
-      {isLoading ? (
+      {props.isLoading ? (
         <div className="loader">
           <Loader
             type="Ball-Triangle"
@@ -20,13 +19,15 @@ export default () => {
       ) : (
         <div className="c-row">
           <div className="c-col">
-            <TodoInput addTodo={addTodo} />
+            <TodoInput addTodo={props.addTodo} />
           </div>
           <div className="c-col">
-              <TodoContent />
+            <TodoContent />
           </div>
         </div>
       )}
     </>
   );
 };
+
+export default withTodo(Home);

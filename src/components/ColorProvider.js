@@ -1,38 +1,29 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-import ColorContext from "../contexts/ColorContext"
+import ColorContext from "../contexts/ColorContext";
 
-export default class extends Component {
-
-  state = {
-    color : [12,3,3]
-  }
-  formatColor = ary => {
+export default props => {
+  const [color, setColor] = useState([12, 3, 3]);
+  const formatColor = ary => {
     return "rgb(" + ary.join(", ") + ")";
   };
-  chooseColor = () => [
+  const chooseColor = () => [
     Math.floor(Math.random() * 256),
     Math.floor(Math.random() * 256),
     Math.floor(Math.random() * 256)
   ];
 
-  handleClick = () => {
-    this.setState({
-      color: this.chooseColor()
-    });
+  const handleClick = () => {
+    setColor(chooseColor());
   };
-
-  alertColor = () => {
-
-  }
-  render() {
-    return (
-      <ColorContext.Provider value={{
-        color: this.formatColor(this.state.color),
-        handleClick: this.handleClick,
-      }}>
-        {this.props.children}
-      </ColorContext.Provider>
-    );
-  }
-}
+  return (
+    <ColorContext.Provider
+      value={{
+        color: formatColor(color),
+        handleClick: handleClick
+      }}
+    >
+      {props.children}
+    </ColorContext.Provider>
+  );
+};

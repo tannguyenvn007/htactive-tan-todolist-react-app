@@ -209,3 +209,9 @@ form {
     font-size: 24px;
   }
 }
+.black{
+  backgroundColor: black,
+}
+.white{
+  backgroundColor: white,
+}
